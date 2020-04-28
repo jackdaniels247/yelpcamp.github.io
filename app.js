@@ -16,7 +16,8 @@
  var commentRoutes=require("./routes/comments");
  var indexRoutes=require("./routes/index");
  
- mongoose.connect('mongodb://localhost:27017/yelp_camp',{useNewUrlParser: true});
+ // mongoose.connect('mongodb://localhost:27017/yelp_camp',{useNewUrlParser: true});
+  mongoose.connect('mongodb+srv://aryan:<password>@cluster0-ngkil.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser: true});
  
  app.use(body.urlencoded({extended:true}));
   app.use(require("express-session")({
