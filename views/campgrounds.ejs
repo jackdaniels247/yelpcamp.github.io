@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>yelp camp</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    </head>
+    <body>
+        
+        <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Yelp Camp</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+       
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+       <% if(!currentUser){ %>
+         <li><a href="/login">Login</a></li>
+          <li><a href="/register">Sign Up</a></li>
+         <% }else{ %>
+         <li><a href="#">signed in as <%= currentUser.username%></a></li>
+          <li><a href="/logout">LogOut</a></li>
+         <% } %>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+      <div class="container">
+          <% if(error && error.length>0){ %>
+          <div class="alert alert-danger" role="alert">
+            <%=error%>
+        </div>
+        <% } %>
+        
+        <% if(success && success.length>0){ %>
+        <div class="alert alert-success" role="alert">
+            <%=success%>
+        </div>
+        <% } %>
+      </div>
+        
+        
+        
+        <div class="container">
+            <header class="jumbotron">
+            <h1>Welcome to the Campgrounds Page!!!</h1>
+<p>View our all handpicked campgrounds of the world!! </p>
+<a class="btn btn-lg btn-primary" href="/campgrounds/new">Add Campground</a>
+        </header>
+        
+<div class="row text-center" style="display:flex; flex-wrap:wrap;">
+    <% camp.forEach(function(camp){%>
+   <div class="col-lg-3 col-sm-6">
+       <div class="thumbnail">
+        <img src="<%= camp.image %>">
+        <div class="caption">
+           <h4><%= camp.name %></h4>
+       </div>
+       <a class="btn btn-primary" href="/campgrounds/<%= camp._id %>">More info</a>
+       </div>
+       
+
+   </div>
+    
+<% }); %>
+</div>
+
+
+        </div>
+        
+    </body>
+</html>
+
+
